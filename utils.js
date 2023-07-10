@@ -4,6 +4,9 @@ export const numbers = [
 
 export const numbers21 = [21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
 export const smallNumbers = [1, 2, 3, 4, 5];
+export const evenNumbers = [2, 4, 6, 8];
+export const emptyArray = [];
+export const emptyArray2 = [, , ,];
 
 export const trees = [
   "Dąb",
@@ -20,15 +23,15 @@ export const trees = [
 
 export const persons = [
   { name: "Anna", age: 25, alive: true },
-  { name: "John", age: 32, alive: true },
+  { name: "John", age: 32, alive: false },
   { name: "Emily", age: 19, alive: true },
   { name: "Michael", age: 42, alive: true },
   { name: "Sarah", age: 55, alive: true },
   { name: "Daniel", age: 68, alive: false },
   { name: "Olivia", age: 29, alive: true },
-  { name: "Matthew", age: 41, alive: true },
+  { name: "David", age: 41, alive: true },
   { name: "Sophia", age: 74, alive: false },
-  { name: "David", age: 47, alive: true },
+  { name: "David", age: 47, alive: false },
 ];
 
 export const products = [

@@ -1,8 +1,8 @@
 const consoleBeforeImport = () => {
-  // Works
+  // Works why?
   console.log(numbers);
 };
-// consoleBeforeImport();
+consoleBeforeImport();
 
 import {
   numbers,
@@ -11,6 +11,8 @@ import {
   products,
   numbers21,
   smallNumbers,
+  emptyArray,
+  evenNumbers,
 } from "./utils.js";
 
 const { log } = console;
@@ -64,10 +66,10 @@ const concatArrays = () => {
   let array4 = [extra, ...numbers, ...numbers21];
   log(array4);
 };
-
 // concatArrays();
 
 // Array fill
+
 // fill(value, start, end)
 // if nothing pass in fill() => undefined
 // fill() also change "array"
@@ -96,7 +98,96 @@ const filterArrays = () => {
   log(numberResults);
 
   numberResults.push(21);
-  log(numberResults);
-  log(numbers);
+  log("numberResults:", numberResults);
+  log("numbers:", numbers);
+
+  const objectWithText = persons.filter(({ name }) => name === "David");
+  log("numbers:", objectWithText);
+
+  const persondoesntExist = persons.filter(({ name }) => name === "Abba");
+  log("persondoesntExist:", persondoesntExist); // empty array
+
+  const personAgeAndAlive = persons.filter(
+    ({ age, alive }) => age >= 70 && alive === false
+  );
+  log("personAgeAndAlive:", personAgeAndAlive);
+
+  const priceHigherThen = products.filter(
+    ({ price, stock }) => price >= 500 && stock.available === true
+  );
+  log("priceHigherThen:", priceHigherThen);
+
+  const availableItems = products.filter(
+    (item) => item.stock.available === true
+  );
+  log("availableItems:", availableItems);
+
+  const productsItemName = products.filter(({ item }) => item.length <= 6);
+  log("productsItemName:", productsItemName);
 };
-filterArrays();
+// filterArrays();
+
+// array find
+
+const findItems = () => {
+  const findDaniel = persons.find((person) => person.name === "Daniel");
+  log("findDaniel", findDaniel);
+
+  const findDeadDavid = persons.find(
+    ({ name, alive }) => name === "David" && alive === false
+  );
+  log("findDeadDavid:", findDeadDavid);
+
+  const findFirstDeadPerson = persons.find(({ alive }) => alive === false);
+  log("findFirstDeadPerson:", findFirstDeadPerson);
+};
+// findItems();
+
+// array every
+
+const isEveryTrue = () => {
+  const dividedTwo = (element) => element % 2 === 0;
+
+  const numberDividedTwo = numbers.every((number) => number % 2 === 0);
+  log("numberDividedTwo", numberDividedTwo);
+
+  const numberDividedTwoFunction = numbers.every(dividedTwo);
+  log("numberDividedTwoFunction", numberDividedTwoFunction);
+
+  const evenNumbersFunction = evenNumbers.every(dividedTwo);
+  log("evenNumbersFunction", evenNumbersFunction);
+
+  const personsAge = persons.every(({ age }) => age >= 38);
+  log("personsAge", personsAge);
+
+  const availableProduct = products.every(
+    ({ stock }) => stock.available === true
+  );
+  log("availableProduct", availableProduct);
+};
+
+// isEveryTrue();
+
+// array some
+
+const isSomeTrue = () => {
+  const dividedTwo = (element) => element % 2 === 0;
+
+  const someNumberDividedTwo = numbers.some((number) => number % 2 === 0);
+  log("someNumberDividedTwo", someNumberDividedTwo);
+
+  const someNumberDividedTwoFunction = numbers.some(dividedTwo);
+  log("someNumberDividedTwoFunction", someNumberDividedTwoFunction);
+
+  const someEvenNumbersFunction = evenNumbers.some(dividedTwo);
+  log("someEvenNumbersFunction", someEvenNumbersFunction);
+
+  const somePersonsAge = persons.some(({ age }) => age >= 38);
+  log("somePersonsAge", somePersonsAge);
+
+  const someAvailableProduct = products.some(
+    ({ stock }) => stock.available === true
+  );
+  log("someAvailableProduct", someAvailableProduct);
+};
+// isSomeTrue();
