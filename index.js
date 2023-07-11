@@ -124,8 +124,11 @@ const filterArrays = () => {
 
   const productsItemName = products.filter(({ item }) => item.length <= 6);
   log("productsItemName:", productsItemName);
+
+  products.filter(({ item }) => item.length <= 6);
+  log("products", products);
 };
-// filterArrays();
+filterArrays();
 
 // array find
 
