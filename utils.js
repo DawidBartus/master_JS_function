@@ -63,3 +63,10 @@ export const products = [
   { item: "Smartwatch", price: 249.99, stock: { available: true, supply: 12 } },
   { item: "Klawiatura", price: 59.99, stock: { available: true, supply: 25 } },
 ];
+
+export const orders = [
+  { name: "Koszula", price: 29.99, quantity: 2, available: true },
+  { name: "Spodnie", price: 49.99, quantity: 1, available: false },
+  { name: "Buty", price: 79.99, quantity: 3, available: true },
+];
+export const file = ["file1.txt", "file2.jpg", "file3.txt", "file4.pdf"];

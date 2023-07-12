@@ -14,6 +14,8 @@ import {
   emptyArray,
   evenNumbers,
   person,
+  orders,
+  file,
 } from "./utils.js";
 
 const { log } = console;
@@ -128,8 +130,19 @@ const filterArrays = () => {
 
   products.filter(({ item }) => item.length <= 6);
   log("products", products);
+
+  const files = file.filter((file) => {
+    let index = file.indexOf(".");
+    return file.slice(index, file.length) === ".txt";
+  });
+  log(files);
+
+  // Better option!
+
+  const files2 = file.filter((file) => file.endsWith(".txt"));
+  log("files2", files2);
 };
-// filterArrays();
+filterArrays();
 
 // array find
 
@@ -309,9 +322,9 @@ const letsCopyAnObject = () => {
 
   log("---");
 
-  newPersonJSON.age = 60;
+  newPersonJSON.age = 99;
   newPersonJSON.address.street = "Zduńska";
-  log("newPersonJSON age is change  to 60:");
+  log("newPersonJSON age is change  to 99:");
   log("newPersonJSON address is change to Zduńska:");
 
   log("newPersonJSON age:", newPersonJSON.age);
@@ -319,4 +332,52 @@ const letsCopyAnObject = () => {
   log("newPersonJSON address:", newPersonJSON.address.street);
   log("person age:", person.address.street);
 };
-letsCopyAnObject();
+// letsCopyAnObject();
+
+const mapFunction = () => {
+  log("Map function");
+  const numbers = [...smallNumbers];
+  log("numbers", numbers);
+
+  numbers.map((number) => number * 2);
+  log("numbers after map", numbers);
+
+  const mapNumbers = numbers.map((number) => number * 2);
+  log("mapNumbers", mapNumbers);
+
+  const personArray = [...persons];
+  const alivePersons = personArray.map((person) =>
+    person.alive ? `${person.name} - alive` : `${person.name} - dead`
+  );
+  log(alivePersons);
+
+  const onlineOrdersWithTotalPrice = orders.map((order) => {
+    let { price, quantity, available } = order;
+
+    let totalPrice = available ? (price * quantity).toFixed(2) : 0;
+
+    return { ...order, totalPrice };
+  });
+  log(onlineOrdersWithTotalPrice);
+
+  const availableAndSortedItems = (array) => {
+    const availableItems = array.filter((item) => item.available === true);
+    const names = availableItems.map(({ name }) => name);
+    return names.sort();
+  };
+  log(availableAndSortedItems(orders));
+
+  const moreThenOneItemInOrder = (array) => {
+    const orderArray = array.filter((item) => item.quantity > 1);
+
+    const addSubtotal = orderArray.map((item) => {
+      const { price, quantity } = item;
+      let subtotal = (price * quantity).toFixed(2);
+
+      return { ...item, subtotal };
+    });
+    return addSubtotal;
+  };
+  log(moreThenOneItemInOrder(orders));
+};
+// mapFunction();
