@@ -2,7 +2,7 @@ const consoleBeforeImport = () => {
   // Works why?
   console.log(numbers);
 };
-consoleBeforeImport();
+// consoleBeforeImport();
 
 import {
   numbers,
@@ -13,6 +13,7 @@ import {
   smallNumbers,
   emptyArray,
   evenNumbers,
+  person,
 } from "./utils.js";
 
 const { log } = console;
@@ -128,7 +129,7 @@ const filterArrays = () => {
   products.filter(({ item }) => item.length <= 6);
   log("products", products);
 };
-filterArrays();
+// filterArrays();
 
 // array find
 
@@ -194,3 +195,128 @@ const isSomeTrue = () => {
   log("someAvailableProduct", someAvailableProduct);
 };
 // isSomeTrue();
+
+// Copy an object
+
+const letsCopyAnObject = () => {
+  const newPerson = person;
+  log("newPerson before change:", newPerson);
+  log("newPerson before change:", person);
+
+  log("--- ---");
+
+  person.age = 33;
+  person.address.state = "Zwierzyniecka";
+
+  log("person age is change to 33:");
+  log("person address is change to Zwierzyniecka:");
+
+  log("newPerson age:", newPerson.age);
+  log("person age:", person.age);
+  log("newPerson address:", newPerson.address.state);
+  log("person address:", person.address.state);
+
+  log("---");
+
+  newPerson.age = 35;
+  newPerson.address.state = "Kapelanka";
+
+  log("newPerson age is change to 35:");
+  log("newPerson address is change to Kapelanka:");
+
+  log("newPerson age:", newPerson.age);
+  log("person age:", person.age);
+  log("newPerson address:", newPerson.address.state);
+  log("person address:", person.address.state);
+
+  // If newPerson i change the person object is also change bc its only an reference
+  // to person object, not a copy
+
+  log("---Spread operator---");
+  // Spread operator
+
+  const newPersonSpread = { ...person };
+
+  person.age = 33;
+  person.address.state = "Grunwaldzka";
+  log("person age is change to 33:");
+  log("person address is change to Grunwaldzka:");
+
+  log("newPersonSpread age:", newPersonSpread.age);
+  log("person age:", person.age);
+  log("newPersonSpread address:", newPersonSpread.address.state);
+  log("person address:", person.address.state);
+
+  log("---");
+
+  newPersonSpread.age = 40;
+  newPersonSpread.address.street = "Królewska";
+  log("newPersonSpread age is change:");
+  log("newPersonSpread address is change:");
+
+  log("newPersonSpread age:", newPersonSpread.age);
+  log("person age:", person.age);
+  log("newPersonSpread address:", newPersonSpread.address.street);
+  log("person age:", person.address.street);
+
+  // Spread operator create only shallow copy of person object.
+  // If first layer is change in newPersonSpread it doesn't change the person object
+  // But if something deeper in newPersonObject is change, it also refers to person object
+
+  log("--- Structured clone ---");
+  // Structured clone
+
+  const structuredPerson = structuredClone(person);
+
+  person.age = 22;
+  person.address.state = "Barska";
+  log("person age is change to 33:");
+  log("person address is change to Barska:");
+
+  log("structuredPerson age:", structuredPerson.age);
+  log("person age:", person.age);
+  log("structuredPerson address:", structuredPerson.address.state);
+  log("person address:", person.address.state);
+
+  log("---");
+
+  structuredPerson.age = 60;
+  structuredPerson.address.street = "Zduńska";
+  log("structuredPerson age is change  to 60:");
+  log("structuredPerson address is change to Zduńska:");
+
+  log("structuredPerson age:", structuredPerson.age);
+  log("person age:", person.age);
+  log("structuredPerson address:", structuredPerson.address.street);
+  log("person age:", person.address.street);
+
+  // structuredClone() creates the deep copy of object
+
+  log("--- JSON.stringify() & JSON.parse()");
+
+  const newPersonJSONStringify = JSON.stringify(person);
+  const newPersonJSON = JSON.parse(newPersonJSONStringify);
+
+  person.age = 24;
+  person.address.state = "Krowoderska";
+  log("person age is change to 24:");
+  log("person address is change to Krowoderska:");
+
+  log("newPersonJSON age:", newPersonJSON.age);
+  log("person age:", person.age);
+  log("newPersonJSON address:", newPersonJSON.address.state);
+  log("person address:", person.address.state);
+
+  log("---");
+
+  newPersonJSON.age = 60;
+  newPersonJSON.address.street = "Zduńska";
+  log("newPersonJSON age is change  to 60:");
+  log("newPersonJSON address is change to Zduńska:");
+
+  log("newPersonJSON age:", newPersonJSON.age);
+  log("person age:", person.age);
+  log("newPersonJSON address:", newPersonJSON.address.street);
+  log("person age:", person.address.street);
+};
+letsCopyAnObject();

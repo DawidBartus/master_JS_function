@@ -34,6 +34,23 @@ export const persons = [
   { name: "David", age: 47, alive: false },
 ];
 
+export const person = {
+  name: "John Doe",
+  age: 30,
+  address: {
+    street: "123 Main Street",
+    city: "New York",
+    state: "NY",
+    country: "USA",
+  },
+  hobbies: ["reading", "painting", "hiking"],
+  education: {
+    degree: "Bachelor's",
+    major: "Computer Science",
+    university: "ABC University",
+  },
+};
+
 export const products = [
   { item: "Książka", price: 29.99, stock: { available: true, supply: 50 } },
   { item: "Telewizor", price: 999.99, stock: { available: true, supply: 10 } },
