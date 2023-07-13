@@ -1,0 +1,73 @@
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+#notpurpleDot {
+  position: fixed;
+  z-index: 999;
+  top: -150px;
+  right: -250px;
+  transform: rotate(21.94deg);
+}
+#purpleDot {
+  position: fixed;
+  bottom: -150px;
+  left: -150px;
+  transform: rotate(16.86deg);
+}
+.zindex {
+  z-index: 1;
+}
+
+@media screen and (max-width: 768px) {
+  #notpurpleDot {
+    opacity: 1;
+    animation-name: fade-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  #purpleDot {
+    opacity: 1;
+    animation-name: fade-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #notpurpleDot {
+    opacity: 0;
+    animation-name: fade-in;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+
+  #purpleDot {
+    opacity: 0;
+    animation-name: fade-in;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
