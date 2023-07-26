@@ -16,6 +16,7 @@ import {
   person,
   orders,
   file,
+  numbersToSort,
 } from "./utils.js";
 
 const { log } = console;
@@ -142,7 +143,7 @@ const filterArrays = () => {
   const files2 = file.filter((file) => file.endsWith(".txt"));
   log("files2", files2);
 };
-filterArrays();
+// filterArrays();
 
 // array find
 
@@ -381,3 +382,139 @@ const mapFunction = () => {
   log(moreThenOneItemInOrder(orders));
 };
 // mapFunction();
+
+// Zadanie dziesiąte:
+// Napisz funkcję, która jako argument przyjmuje liczbę całkowitą i zwraca sumę wszystkich liczb od 1 do podanej liczby.
+
+const sumNumbers = (number) => {
+  let sum = 0;
+  for (let i = 1; i <= number; i++) {
+    sum = sum + i;
+  }
+  return sum;
+};
+// log(sumNumbers(10));
+// log(sumNumbers(2));
+// log(sumNumbers(15));
+
+// Zadanie dziewiąte:
+// Napisz funkcję, która sprawdza, czy podany rok jest rokiem przestępnym.
+
+const checkYear = (year) => {
+  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+// log(checkYear(2000));
+// log(checkYear(2020));
+// log(checkYear(2021));
+// log(checkYear(1900));
+
+// Zadanie drugie:
+// Napisz funkcję, która jako argument przyjmuje dwa ciągi znaków i sprawdza, czy jeden ciąg zawiera się w drugim.
+
+const checkString = (string1, string2) => string1.includes(string2);
+
+// log(checkString("Pies je jedzenie", "jedzepiesnie"));
+// log(checkString("Ptaki śpiewają", "konie nie"));
+
+// Zadanie szóste:
+// Napisz funkcję, która generuje losowy kod aktywacyjny o podanej długości (np. 6 lub 8 znaków).
+
+const randomNumbers = (long) => {
+  const number = Math.random().toString();
+  const sliceNumber = long + 2;
+
+  return number.slice(2, sliceNumber);
+};
+
+// log(randomNumbers(8).length);
+// log(randomNumbers(6).length);
+// log(randomNumbers(30).length);
+
+const randomNumbersLoop = (long) => {
+  let result = "";
+  for (let i = 0; i < long; i++) {
+    result += Math.floor(Math.random() * 10);
+  }
+  return result;
+};
+// log(randomNumbersLoop(8).length);
+// log(randomNumbersLoop(6).length);
+// log(randomNumbersLoop(30).length);
+
+// Zadanie czwarte:
+// Napisz funkcję, która jako argument przyjmuje tablicę obiektów z informacjami
+// o osobach (np. imię, nazwisko, wiek) i zwraca tablicę zawierającą tylko pełnoletnie osoby.
+
+const isAdult = (arr) => arr.filter((person) => person.age >= 18);
+
+// log(isAdult(persons));
+
+// Zadanie osiemnaste:
+// Napisz funkcję, która jako argument przyjmuje tablicę liczb i zwraca nową tablicę,
+// w której liczby są posortowane w kolejności malejącej (od największej do najmniejszej).
+
+const sortArr = (arr) => arr.sort((a, b) => b - a);
+
+// log(sortArr(numbersToSort));
+
+// Zadanie dwudzieste szóste:
+// Napisz funkcję, która jako argument przyjmuje tablicę obiektów z
+// informacjami o produktach (np. nazwa, cena, ilość) i zwraca sumę wartości wszystkich produktów.
+
+const sumProductPrice = (arr) => {
+  const prices = arr.reduce((total, item) => total + item.price, 0);
+
+  return prices;
+};
+// log(sumProductPrice(products));
+
+// Zadanie dwudzieste trzecie:
+// Napisz funkcję, która jako argument przyjmuje tekst i zwraca liczbę
+// wystąpień każdego znaku (litera lub inny znak) w tym tekście w formie obiektu.
+
+const characters = (text) => {
+  let textObject = {};
+
+  for (const char of text) {
+    textObject[char] = (textObject[char] || 0) + 1;
+  }
+  return textObject;
+};
+
+// log(characters("Sprawdzamy czy dziala"));
+// log(characters(" 1x a 2x bb"));
+
+// Napisz funkcję, która jako argument przyjmuje dwie tablice i zwraca tablicę zawierającą tylko
+// te elementy, które występują tylko w jednej z tablic, ale nie w obu.
+
+const arrays = (arr1, arr2) => {
+  const newArray = [...arr1, ...arr2];
+  const uniqueArray = newArray.filter(
+    (item) => !arr1.includes(item) || !arr2.includes(item)
+  );
+  return uniqueArray.sort((a, b) => a - b);
+};
+// log(arrays(smallNumbers, evenNumbers));
+
+const sumOfEvenIndex = (arr) => {
+  const evenIndex = arr.filter((item, index) => index % 2 === 0);
+  return evenIndex.reduce((acc, curr) => acc + curr, 0);
+};
+const sumOfEvenIndexReduceOnly = (arr) =>
+  arr.reduce((acc, curr, index) => (index % 2 === 0 ? acc + curr : acc), 0);
+
+// log(sumOfEvenIndex(smallNumbers));
+// log(sumOfEvenIndexReduceOnly(smallNumbers));
+
+// Set
+
+const setArrays = (arr1, arr2) => {
+  const setArray = new Set([...arr1, ...arr2]);
+  console.log(setArray);
+};
+setArrays(smallNumbers, evenNumbers);
