@@ -24,4 +24,12 @@ const strings = (string) => {
   return newString;
 };
 
-console.log(strings("Hello, World!"));
+// console.log(strings("Hello, World!"));
+
+const localTime = new Date();
+const UTCTime = new Date(
+  localTime.getTime() + localTime.getTimezoneOffset() * 60000
+);
+
+console.log(localTime);
+console.log(UTCTime);
