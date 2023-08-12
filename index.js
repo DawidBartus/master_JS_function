@@ -11,7 +11,7 @@ const numbers = (arr) => {
   return arrSum / arrLength;
 };
 
-console.log(numbers(numbers21));
+// console.log(numbers(numbers21));
 
 // Odwracanie tekstu: Napisz funkcję, która odwraca podany ciąg znaków. Na przykład, dla ciągu "Hello, World!"
 // funkcja powinna zwrócić "!dlroW ,olleH". Możesz wykorzystać pętlę lub metody na obiekcie string do odwrócenia tekstu.
@@ -31,5 +31,26 @@ const UTCTime = new Date(
   localTime.getTime() + localTime.getTimezoneOffset() * 60000
 );
 
-console.log(localTime);
-console.log(UTCTime);
+// console.log(localTime);
+// console.log(UTCTime);
+
+function moveZeroes(nums) {
+  let isZero = [];
+
+  let numberArr = nums.filter((num) => {
+    if (num === 0) {
+      isZero.push(num);
+    }
+    return num !== 0;
+  });
+
+  if (isZero.length === 0) {
+    console.log("No 0 in your array");
+    return nums;
+  }
+  const newArr = [...numberArr, ...isZero];
+
+  return newArr;
+}
+
+// console.log(moveZeroes([1, 4, 0, 5]));
