@@ -54,3 +54,7 @@ function moveZeroes(nums) {
 }
 
 // console.log(moveZeroes([1, 4, 0, 5]));
+
+let reverseString = (stringF) => stringF.split("").reverse().join("");
+
+console.log(reverseString("czesc1"));
