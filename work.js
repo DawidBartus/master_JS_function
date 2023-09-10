@@ -162,5 +162,76 @@ const findMaxUsingLoop = (arr) => {
 const numbers4 = [15, 7, 32, 18, 45, 12];
 const max = findMax(numbers4);
 const max2 = findMaxUsingLoop(numbers4);
-console.log(max); // Oczekiwany wynik: 45
-console.log({ max2 }); // Oczekiwany wynik: 45
+// console.log(max); // Oczekiwany wynik: 45
+// console.log({ max2 }); // Oczekiwany wynik: 45
+
+const obj1 = { name: 'John', age: 31 };
+const obj2 = { name: 'John', age: 30 };
+const obj2a = obj1;
+obj2a.saldo = 1000;
+
+// console.log(obj1 === obj2a);
+// console.log(obj2a);
+// console.log(obj1);
+// console.log(obj2a === obj1);
+
+const isEqual = (a, b) => {
+    return Object.keys(a).every(
+        (key) => b.hasOwnProperty(key) && a[key] === b[key]
+    );
+};
+
+// console.log(isEqual(obj1, obj2));
+
+const objectKeys = (a, b) => {
+    const keys1 = Object.keys(a);
+    const keys2 = Object.keys(b);
+    if (keys1.length !== keys2.length) {
+        return false;
+    }
+
+    for (const key of keys1) {
+        if (!keys2.includes(key)) {
+            return false;
+        }
+    }
+    return true;
+};
+
+// console.log('2', objectKeys(obj1, obj2));
+const smallNumbers2 = [1, 2, 3, 4, 5];
+const evenNumbers2 = [1, 2, 3, 4, 5];
+
+const isTheSame = (a, b) => {
+    a.sort((a, b) => a - b);
+    b.sort((a, b) => a - b);
+
+    if (a.length !== b.length) {
+        return false;
+    }
+
+    return a.every((number, index) => number === b[index]);
+};
+
+// console.log(isTheSame(smallNumbers2, evenNumbers2));
+
+const obj1zad = { name: 'John', age: 31, sex: 'parrot' };
+const obj2zad = { name: 'John', age: 30 };
+
+const isTheSameObject = (a, b) => {
+    const keysA = Object.keys(a);
+    const keysB = Object.keys(b);
+
+    if (keysA.length !== keysB.length) {
+        return false;
+    }
+
+    for (const key of b) {
+        if (!a.includes(key)) {
+            return false;
+        }
+    }
+
+    return true;
+};
+console.log(isTheSameObject(obj1zad, obj2zad));
